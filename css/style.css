@@ -1,0 +1,78 @@
+body {
+	font-family: 'Century Gothi', sans-serif;
+	padding: 0;
+}
+
+body.home {
+	background-color: #CCC;
+}
+
+#welcome {
+	font-size: 3.5em;
+	font-weight: bolder;
+	text-align: center;
+	background-color: #ACF;
+	padding: 10px;
+	margin: -10px;
+	color: #555;
+}
+
+#welcome img {
+	position: relative;
+	top: 13px;
+}
+
+#login {
+	/*outline: 1px dashed #000;*/
+	padding: 20px;
+	margin: 10px auto;
+	width: 300px;
+	border: 1px solid #aaa;
+	background-color: #EEE;
+	box-shadow: 0 0 6px rgba(0,0,0,0.5);
+}
+
+#login input {
+	font-family: 'Century Gothi', sans-serif;
+	font-weight: 100;
+	padding: 10px;
+	margin: 10px auto;
+	font-size: 1.1em;
+	display: block;
+	width: 90%;
+	border-radius: 3px;
+	border: 1px solid #AAA;
+}
+
+#login input[type="submit"] {
+	border: 1px solid #AAA;
+	font-weight: initial;
+	width: 50%;
+	cursor: pointer;
+	background-color: #3D3;
+}
+
+#status {
+	display: none;
+	text-align: center;
+	color: red;
+	padding: 0;
+	margin: 0;
+}
+
+p#intro {
+	font-size: 6.8em;
+	font-weight: bolder;
+	opacity: 0.4;
+	text-align: center;
+	text-shadow: 0px 0px 5px rgba(0,0,0,1);
+}
+
+#logout {
+	text-decoration: none;
+	display: block-inline;
+	background-color: red;
+	padding: 10px;
+	color: black;
+	border-radius: 0 0px 5px 5px;
+}
