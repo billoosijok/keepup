@@ -1,10 +1,19 @@
 body {
 	font-family: 'Century Gothi', sans-serif;
 	padding: 0;
+	background-color: #CCC;
+	padding: 0;
+	margin:0;
+}
+.hidden {
+	display: none;
 }
 
-body.home {
-	background-color: #CCC;
+.login-page #pagewrapper {
+	box-shadow: 0 0 10px rgba(0,0,0,0.5);
+	background-color: #fff;
+	margin: 0;
+	height: 100%;
 }
 
 #welcome {
@@ -53,7 +62,7 @@ body.home {
 }
 
 #status {
-	display: none;
+	/*display: none;*/
 	text-align: center;
 	color: red;
 	padding: 0;

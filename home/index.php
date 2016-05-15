@@ -1,11 +1,10 @@
-<?php 
+<?php session_start();
 
-session_start();
 if(isset($_GET['logout'])) {
 	session_unset();
 }
-require 'inc/db_connect.php';
-include 'inc/head.inc.php';
+require '../libs/inc/db_connect.php';
+include '../libs/inc/head.inc.php'; 
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -13,11 +12,11 @@ include 'inc/head.inc.php';
 	<?php 
 		echo_head("Your Home Page");
 	?>
+<script>Transition.adopt();</script>
 </head>
 <body class="home">
 	<?php
-	
-	// MARK:
+
 	if(isset($_SESSION['user_id'])) {
 
 		$user_id = $_SESSION['user_id'];
@@ -39,7 +38,7 @@ include 'inc/head.inc.php';
 					break;
 
 				case 'A':
-					$role = "Admin";
+					header('Location: admin/admin.php');
 					break;
 
 				default:
@@ -53,7 +52,7 @@ include 'inc/head.inc.php';
 		<?php
 
 	} else {
-		header("Location: index.php");
+		header("Location: ../index.php");
 	}
 
 

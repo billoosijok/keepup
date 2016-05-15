@@ -1,27 +1,29 @@
+
 $(document).ready(function(){
+
 	$('form').submit(function(evt) {
 		var statusElement = $('#status');
-		statusElement.html('&nbsp;').slideDown(50).css('background','url(resources/loading.gif) no-repeat center top');
 		
 		evt.preventDefault();
 
-		
-		var loginId = $("#loginIdField").val();
+		var  loginId = $("#loginIdField").val();
 		var password = $("#passwordField").val();
 		
 		if (loginId && password) {
-			var values = "login_id="+loginId+"&password="+password;
+			var values = "ajax&login_id="+loginId+"&password="+password;
 
 			$.ajax({
 				type: "POST",
-				url: "inc/process_login.php",
+				url: "../libs/inc/process_login.php",
 				data: values,
 				success: function(msg){
 			  		statusElement.slideUp(50);
-			        window.location = "home.php";
+			  		// dismissPage('top', msg, 1000);
+			  		// viewPage(msg);
+			  		Transition.toPage(msg,50000);
 			  	},
 			  	error: function() {
-			  		error('Incorrect ID or Password!', statusElement);
+			  		error('Incorrect ID or Password', statusElement);
 			  	}
 			});
 		} else {
@@ -30,8 +32,3 @@ $(document).ready(function(){
 		
 	});
 });	
-
-function error(msg, target) {
-	target.css('background','none');
-	target.text(msg);
-}
