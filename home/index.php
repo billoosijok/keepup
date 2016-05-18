@@ -4,13 +4,13 @@ if(isset($_GET['logout'])) {
 	session_unset();
 }
 require '../libs/inc/db_connect.php';
-include '../libs/inc/head.inc.php'; 
+require '../libs/inc/classes.php'; 
 ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
 	<?php 
-		echo_head("Your Home Page");
+		page_elements::head("Your Home Page");
 	?>
 <script>Transition.adopt();</script>
 </head>

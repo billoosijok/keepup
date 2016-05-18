@@ -1,11 +1,12 @@
 <?php 
-include '../libs/inc/head.inc.php';
-include '../libs/inc/process_login.php';
+require '../libs/inc/classes.php';
+require '../libs/inc/process_login.php';
+$page
 ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<?php echo_head("Login") ?>
+	<?php page_elements::head("Login"); ?>
 	<script src="../libs/js/validate_login.js"></script>
 </head>
 <body class="login-page">

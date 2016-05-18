@@ -1,8 +1,12 @@
+<?php 
+$libs = "../../libs";
+require "$libs/inc/db_connect.php";
+require "$libs/inc/classes.php";
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8">
-	<title>Aministrator</title>
+	<?php page_elements::head('Administration Pgae'); ?>
 </head>
 <body>
 	
