@@ -1,12 +1,14 @@
 body {
-	font-family: 'Century Gothi', sans-serif;
+	font-family: 'Helvetica Neue', Helvetica, sans-serif;
+	font-weight: 400;
 	padding: 0;
-	background-color: #CCC;
+	background-color: #FDFDBB;
 	padding: 0;
 	margin:0;
 }
+
 .hidden {
-	display: none;
+	opacity: 0;
 }
 
 .login-page #pagewrapper {
@@ -85,3 +87,274 @@ p#intro {
 	color: black;
 	border-radius: 0 0px 5px 5px;
 }
+
+nav {
+	position: fixed;
+	top: 0;
+	padding: 1px 15px;
+	width: 100%;
+	background-color: #19B5FE;
+	box-shadow: 0 1px 2px rgba(0,0,0,0.5);
+	z-index: 5;
+}
+
+nav p {
+	font-size: 1.1em;
+	font-weight: 700;
+}
+
+#menu-toggle {
+	cursor: pointer;
+	margin: 0;
+	display: inline-block;
+	padding: 0 20px;
+}
+
+#menu-toggle:hover {
+	background-color: #1796EE;
+}
+
+#menu {
+	display: none;
+	position: fixed;
+	top: 37px;
+	left: 15px;
+	background-color: #AAA;
+	padding: 5px 0px;
+	box-shadow: 0 1px 2px rgba(0,0,0,0.5);
+	z-index: 5;
+	font-size: 1.1em;
+}
+
+#menu li {
+	list-style-type: none;
+}
+
+#menu a {
+	text-decoration: none;
+	padding: 5px 40px;
+	color: inherit;
+}
+
+#menu a:hover {
+	background-color: rgba(255,255,255,0.3);
+}
+
+#content {
+	position: relative;
+	top: 80px;
+	width: 70%;
+	min-width: 400px;
+	margin: 20px auto;
+	max-width: 600px;
+}
+
+.card {
+	border: 1px solid #999;
+	box-shadow: 0 0 1px rgba(0,0,0,0.5);
+	width: 90%;
+	margin: 20px auto;
+	border-radius: 2px;
+	background-color: #FFF;
+	font-size: 1.5em;
+}
+
+.card h2 {
+	padding: 1px;
+	margin: 0 auto;
+	font-size: 0.7em;
+	font-weight: normal;
+	color: #999;
+	width: 95%;
+	border-bottom: 1px solid #CCC;
+}
+
+.card .main {
+	padding: 20px;
+	width: 90%;
+	padding-left: 50px;
+}
+
+.card.quiz .main {
+	background-image: url("../resources/quiz.png");
+	background-repeat: no-repeat;
+	background-position: left;
+	background-size: 50px;
+
+
+}
+.card.assignment .main {
+	background-image: url("../resources/assignment.png");
+	background-repeat: no-repeat;
+	background-position: left;
+	background-size: 50px;
+}
+
+#addToggle {
+	font-size: 2.3em;
+	display: inline-block;
+	padding: 0 10px;
+	cursor: pointer;
+}
+
+#addToggle.on {
+	background: #ddd;
+}
+
+form#addAgenda {
+	display: none;
+	min-width: 300px;
+	margin: 10px auto;
+	padding: 10px;
+	background-color: #ECEFF1;
+}
+
+#addAgenda fieldset {
+	border: none;
+	border-bottom: 1px solid #AAA;
+	text-align: left;
+	margin: 25px auto;
+	padding: 5px 0;
+}
+
+#addAgenda label {
+	font-weight: 700;
+	/*outline: 1px solid #000;*/
+}
+
+.label-due {
+	display: inline-block;
+}
+
+#addAgenda .name {
+	display: inline-block;
+}
+
+#addAgenda .field {
+	/*border: 1px dashed #000;*/
+	display: inline-block;
+	padding: 0;
+	margin: 5px auto;
+	width: 100%;
+	padding-left: 10px;
+}
+
+#addAgenda input, #addAgenda textarea  {
+	padding: 7px;
+	border-radius: 4px;
+	width: 90%;
+	font-size: 0.8em;
+	font-weight: lighter;
+	color: #005;
+	border: 1px solid #FFF;
+	box-shadow: inset 0 0px 3px rgba(0,0,0,0.5);
+}
+
+#addAgenda input.wrong[type="text"] {
+	border-bottom-color: #F99;
+}
+
+#addAgenda input[type="text"]:focus {
+	border-bottom-color: green;
+}
+
+#addAgenda .row {
+	/*outline: 1px dashed #000;*/
+	margin: 0 auto;
+	padding: 0;
+	text-align: left;
+}
+
+#addAgenda .half {
+	width: 44.7%;
+}
+#addAgenda .half input[type="text"] {
+	width: 97%;
+}
+
+#addAgenda select {
+	/*outline: 1px dashed #000;*/
+	font-size: 0.6em;
+	background-color: #fff;
+	width: 97%;
+	padding: 7px;
+	border: 1px solid #FFF;
+	border-radius: 4px;
+	box-shadow: inset 0 0px 3px rgba(0,0,0,0.5);
+	font-size: 0.8em;
+}
+
+#addAgenda input[type="submit"] {
+	font-family: inherit;
+	font-weight: 600;
+	color: #fff;
+	background: #929615;
+	font-size: 1.0em;
+	border: 1px solid #AAA;
+	box-shadow: 0 0 3px rgba(0,0,0,1);
+	padding: 5px;
+	width: initial;
+	margin: auto;
+	cursor: pointer;
+}
+
+#addAgenda input[type="submit"]:active {
+	color: #DDD;
+}
+
+#addAgenda .fieldError {
+	background-color: rgb(255, 252, 252);
+	border-color: #F88;
+}
+
+#addAgenda div.error {
+	height: 15px;
+	font-size: 0.8em;
+	color: #F44;
+}
+
+#addAgenda .done {
+	text-align: center;
+}
+
+.agenda {
+	background: white;
+	border: 1px solid #AAA;
+	border-radius: 4px;
+	margin: auto;
+	font-size: 1.5em;
+	cursor: pointer;
+	padding: 10px 0;
+}
+
+.agenda .title {
+	float: left;
+	padding: 3px;
+	margin: 3px 10px;
+	font-size: 1.2em;
+	position: relative;
+}
+
+.agenda .date {
+	float: right;
+	font-size: 0.7em;
+	margin: 15px 10px;
+}
+
+.agenda .more {
+	padding: 10px;
+	display: none;
+	font-size: 0.8em;
+}
+
+.agenda .due_time, .agenda .due_date {
+	display: inline-block;
+}
+
+#sidebar {
+	height: 100vh;
+	border: 1px solid #000;
+	width: 20%;
+	padding-top: 50px;
+	position: fixed;
+} 

@@ -1,28 +1,16 @@
 <?php 
 
-$DB_HOST 	 = 'localhost';
-$DB_DRIVER   = 'mysql';
-$DB_USERNAME = 'root';
-$DB_PASSWORD = '';
-$DB_NAME     = 'keepup';
-
 class DB extends PDO {
-	
-	public $HOST,$DRIVER,$USERNAME,$PASSWORD,$NAME;
 
 	public function __construct($DRIVER,$HOST,$USERNAME,$PASSWORD,$NAME) {
-        $this->DRIVER = $DRIVER;
-        $this->HOST = $HOST;
-        $this->USERNAME = $USERNAME;
-        $this->PASSWORD = $PASSWORD;
-        $this->NAME = $NAME;
 
-       	parent::__construct("$DRIVER:host=$HOST;dbname=$NAME", $USERNAME, $PASSWORD);
+       	parent::__construct("$DRIVER:host=$HOST;dbname=$NAME;charset=utf8", $USERNAME, $PASSWORD);
        	
        	$this->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
+       	$this->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_OBJ);
+       	
     }
-
+	
 	public function tablesNames() {
 	
 		###	Returns: The names of all the tables in it.
@@ -83,13 +71,13 @@ class DB extends PDO {
 		return $columns;
 	}
 
-	function INSERT($table, ...$values) {  
+	function INSERT($table, $values) {  
 		### Takes: - str: table name.
 		### 	   - str: the variables .
 
 		$placeholders = [];
 		foreach ($values as $value) {
-			arrat_push($placeholders, '?');
+			array_push($placeholders, '?');
 		}
 		$placeholders = implode(',', $placeholders);
 
@@ -116,12 +104,7 @@ class DB extends PDO {
 		
 		# Only echoes something out when there is an error.
 		echo mysqli_error($dbc);
-	} 
+	}
 }
-
-$db = new DB($DB_DRIVER, $DB_HOST, $DB_USERNAME, $DB_PASSWORD, $DB_NAME);
-
-
-$db->INSERT("users", 'a', 'b', 'c');
 
 ?>
