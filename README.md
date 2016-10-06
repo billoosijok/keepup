@@ -4,4 +4,4 @@
 
 ## How?
 
-  A Teacher posts assignments and Students who are enrolled in his class will see it in their feeds.
+  Teachers post an assignment and the students who are enrolled in their classes will see it in their feeds.
