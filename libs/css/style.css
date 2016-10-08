@@ -1,8 +1,10 @@
+@font-face {font-family: Catarman;src: url(../fonts/Catamaran-Light.ttf);font-weight: 300;}@font-face {font-family: Catarman;src: url(../fonts/Catamaran-Regular.ttf);font-weight: 400;}@font-face {font-family: Catarman;src: url(../fonts/Catamaran-Medium.ttf);font-weight: bold;}@font-face {font-family: Catarman;src: url(../fonts/Catamaran-Bold.ttf); font-weight: 600;}
+
 body {
-	font-family: 'Helvetica Neue', Helvetica, sans-serif;
+	font-family: 'Catarman', Helvetica, sans-serif;
 	font-weight: 400;
 	padding: 0;
-	background-color: #FDFDBB;
+	background-color: #FDFDCC;
 	padding: 0;
 	margin:0;
 }
@@ -10,6 +12,8 @@ body {
 .hidden {
 	opacity: 0;
 }
+
+/* ========== LOGIN CSS ========== */
 
 .login-page #pagewrapper {
 	box-shadow: 0 0 10px rgba(0,0,0,0.5);
@@ -38,9 +42,8 @@ body {
 	padding: 20px;
 	margin: 10px auto;
 	width: 300px;
-	border: 1px solid #aaa;
+	border: 1px solid #CCC;
 	background-color: #EEE;
-	box-shadow: 0 0 6px rgba(0,0,0,0.5);
 }
 
 #login input {
@@ -79,6 +82,8 @@ p#intro {
 	text-shadow: 0px 0px 5px rgba(0,0,0,1);
 }
 
+
+/* ========== GENERAL CSS ========== */
 #logout {
 	text-decoration: none;
 	display: block-inline;
@@ -91,69 +96,99 @@ p#intro {
 nav {
 	position: fixed;
 	top: 0;
-	padding: 1px 15px;
 	width: 100%;
-	background-color: #19B5FE;
+	background-color: #6bF;
 	box-shadow: 0 1px 2px rgba(0,0,0,0.5);
 	z-index: 5;
+	display: flex;
+	justify-content: space-between;
+	align-items: stretch;
+	font-size: 1.1em;
+}
+
+@media screen and (max-width: 480px) {
+	nav {
+		position: static;
+		margin-bottom: -50px;
+	}
+}
+
+nav > * {
+	margin: 10px;
 }
 
 nav p {
 	font-size: 1.1em;
 	font-weight: 700;
+	margin: 10px;
 }
 
-#menu-toggle {
-	cursor: pointer;
+nav li, nav ul > * {
+	list-style: none;
+	padding: 0;
+	margin: 0 3px;
+}
+
+nav ul {
+	display: flex;
+	justify-content: space-between;
+	flex-wrap: wrap;
+	align-items: center;
 	margin: 0;
-	display: inline-block;
-	padding: 0 20px;
+	padding: 0;
+}
+ nav .classes-list {
+ 	margin: 5px;
+ 	padding: 5px 10px;
+ }
+
+nav li {
+	border-radius: 3px;
 }
 
-#menu-toggle:hover {
-	background-color: #1796EE;
+nav .sep {
+	border-left: 2px solid rgba(0,0,0,0.15);
+	height: 20px;
+	margin-right: 3px;
 }
 
-#menu {
-	display: none;
-	position: fixed;
-	top: 37px;
-	left: 15px;
-	background-color: #AAA;
-	padding: 5px 0px;
-	box-shadow: 0 1px 2px rgba(0,0,0,0.5);
-	z-index: 5;
-	font-size: 1.1em;
-}
-
-#menu li {
-	list-style-type: none;
-}
-
-#menu a {
+nav a {
 	text-decoration: none;
-	padding: 5px 40px;
 	color: inherit;
+	padding: 2px 5px;
+	border-radius: 3px;
 }
 
-#menu a:hover {
+nav a:hover {
 	background-color: rgba(255,255,255,0.3);
+}
+
+nav .active {
+	background: rgba(250,250,250,0.7);
 }
 
 #content {
 	position: relative;
-	top: 80px;
-	width: 70%;
-	min-width: 400px;
+	top: 50px;
+	width: 80%;
+	min-width: 310px;
 	margin: 20px auto;
 	max-width: 600px;
+}
+
+/* ========== TEACHER CSS ========== */
+
+.card-wrapper {
+	padding: 15px 0;
+	margin: auto;
+	/*width: 100%;*/
 }
 
 .card {
 	border: 1px solid #999;
 	box-shadow: 0 0 1px rgba(0,0,0,0.5);
-	width: 90%;
-	margin: 20px auto;
+	/*width: 90%;*/
+	/*margin: 20px auto;*/
 	border-radius: 2px;
 	background-color: #FFF;
 	font-size: 1.5em;
@@ -169,10 +204,28 @@ nav p {
 	border-bottom: 1px solid #CCC;
 }
 
+.card form {
+	float: right;
+}
+.card .done {
+	color: #777;
+	border-radius: 35%;
+	cursor: pointer;
+	background: transparent;
+	border: none;
+	font-size: 0.9em;
+}
+
+.card .done:hover {
+	background: #ddd;
+}
+
 .card .main {
-	padding: 20px;
-	width: 90%;
+	padding: 10px;
+	margin-top: 10px;
+	width: 80%;
 	padding-left: 50px;
+	line-height: 1.3;
 }
 
 .card.quiz .main {
@@ -180,8 +233,6 @@ nav p {
 	background-repeat: no-repeat;
 	background-position: left;
 	background-size: 50px;
-
-
 }
 .card.assignment .main {
 	background-image: url("../resources/assignment.png");
@@ -190,10 +241,22 @@ nav p {
 	background-size: 50px;
 }
 
+#undo {
+	position: fixed;
+	left: -70px;
+	bottom: 5%;
+	background: rgba(0,0,0,0.5);
+	padding: 5px;
+	cursor: pointer;
+	color: #fff;
+	font-weight: bold;
+}
+
 #addToggle {
 	font-size: 2.3em;
 	display: inline-block;
 	padding: 0 10px;
+	line-height: 1.2;
 	cursor: pointer;
 }
 
@@ -230,7 +293,7 @@ form#addAgenda {
 	display: inline-block;
 }
 
-#addAgenda .field {
+form .field {
 	/*border: 1px dashed #000;*/
 	display: inline-block;
 	padding: 0;
@@ -258,18 +321,22 @@ form#addAgenda {
 	border-bottom-color: green;
 }
 
-#addAgenda .row {
+form .row {
 	/*outline: 1px dashed #000;*/
 	margin: 0 auto;
 	padding: 0;
 	text-align: left;
 }
 
-#addAgenda .half {
+form .half {
 	width: 44.7%;
 }
-#addAgenda .half input[type="text"] {
+form .half input[type="text"] {
 	width: 97%;
+}
+
+form label, form input{
+	display: block;
 }
 
 #addAgenda select {
@@ -317,10 +384,11 @@ form#addAgenda {
 	text-align: center;
 }
 
+/* ========== STUDENTS CSS ========== */
 .agenda {
 	background: white;
 	border: 1px solid #AAA;
-	border-radius: 4px;
+	border-radius: 0px;
 	margin: auto;
 	font-size: 1.5em;
 	cursor: pointer;
@@ -351,10 +419,351 @@ form#addAgenda {
 	display: inline-block;
 }
 
-#sidebar {
+/* ========== ADMIN CSS ========== */
+
+#admin main {
+	display: flex;
+	width: 80%;
+	max-width: initial;
+	justify-content: space-around;
+	flex-wrap: wrap;
+}
+
+#admin main.edit {
+	display: block ;
+}
+
+.option-set {
+	border: 1px solid #BBB;
+	border-radius: 2px;
+	width: 30%;
+	min-width: 250px;
+	background: #FFF;
+	box-shadow: 0 0 1px rgba(0,0,0,0.2);
+}
+
+.option-set .group-name {
+	font-weight: bold;
+	color: #888;
+	margin: 4px;
+	padding: 10px 0px 0px 15px;
+	cursor: default;
+}
+
+.option {
+	display: block;
+	padding: 10px 15px;
+	text-decoration: none;
+	color: #000;
+}
+
+.option:hover {
+	background-color: rgba(0, 204, 255, 0.2);
+}
+.option:hover > .option-title{
+	text-decoration: underline;
+}
+.option-title {
+	font-weight: bold;
+	font-size: 1.1em;
+}
+
+.option-subtitle {
+	font-size: 0.9em;
+	color: #555;
+}
+
+#sub-nav{
+	border-bottom: 1px solid #000;
+	padding-bottom: 5px;
+	display: flex;
+	justify-content: space-between;
+	align-items: flex-end;
+	width: 100%;
+	align-self: stretch;
+}
+
+#sub-nav a {
+	display: inline-block;
+	padding: 10px;
+	background-color: rgba(0,0,0,0.1);
+	border-top-left-radius: 3px;
+	transition: all 0.2s;
+}
+
+#search {
+	font-size: 1.0em;
+	border-radius: 3px;
+	border: 1px solid #BBB;
+	padding: 5px;
+}
+
+#sub-nav a:hover {
+	background-color: rgba(0,0,0,0.2);
+}
+
+table {
+	width: 100%;
+	border-collapse: collapse;
+	border: 1px solid #AAA;
+	margin: 10px auto;
+	table-layout: fixed;
+	box-shadow: 0 0 4px rgba(0,0,0,0.5);
+}
+
+tr:hover > td {
+	background-color: #EEE;
+	cursor: pointer;
+}
+
+th, td {
+	padding: 10px 5px 10px 3px;
+	text-align: left;
+	border-left: 1px solid #AAA;
+}
+
+td {background: #fff;}
+th {background: #2AD1B9;}
+
+div.overlay {
+	display: flex;
+	opacity: 0;
+	width: 100vw;
 	height: 100vh;
-	border: 1px solid #000;
-	width: 20%;
-	padding-top: 50px;
+	top: 0;
 	position: fixed;
-} 
+	background: rgba(0,0,0,0.3);
+	z-index: 10;
+	align-items: center;
+	justify-content: center;
+}
+
+#editBox {
+	background: white;
+	width: 50%;
+	/*max-height: 450px;*/
+	overflow-y: scroll;
+	box-shadow: 0 0 2px rgba(0,0,0,0.6);
+	border-radius: 4px;
+}
+
+#editBox .head {
+	font-size: 1.4em;
+	font-weight: bold;
+	color: #999;
+	margin: 0;
+	position: fixed;
+	justify-content: space-between;
+	width: inherit;
+}
+
+#editBox #close {
+	float: right;
+	color: black;
+	display: block;
+	background: #FCC;
+	padding: 0 10px;
+	cursor: pointer;
+	/*position: fixed;*/
+}
+
+#editBox #close:active {
+	background: #F99;
+}
+
+#editBox form {
+	width: 80%;
+	margin: 10px auto;
+}
+
+#editBox .field {
+	margin: 10px auto;
+}
+
+#editBox label {
+	display: block;
+	color: #666;
+}
+
+#editBox input {
+	display: block;
+	font-size: 1.6em;
+	width: 98%;
+	border: 1px solid #fff;
+	/*border-bottom: 1px solid #fff;*/
+	padding-left: 5px;
+	transition: all 0.2s;
+	border-radius: 3px;
+	/*box-shadow: 0 0 3px rgba(0,0,0,0.4);*/
+}
+
+#editBox input:focus {
+	border-left: 1px solid rgba(255, 0, 0, 0.6);
+	border-bottom: 1px solid #444; 
+}
+
+#editBox fieldset {
+	box-shadow: 0 1px 2px rgba(0,0,0,0.5);
+	border: 1px solid #999;
+	margin: 10px auto;
+}
+
+#editBox .button {
+	font-size: 1.1em;
+	border-radius: 3px;
+	box-shadow: 0 1px 2px rgba(0,0,0,0.3);
+	border: 1px solid #999;
+	cursor: pointer;
+}
+
+#editBox .button:disabled:active {
+	box-shadow: 0 1px 2px rgba(0,0,0,0.3);
+	color: #888;
+}
+
+#editBox .button:active {
+	color: initial;
+	box-shadow: inset 0 1px 1px rgba(0,0,0,0.3);
+}
+#editBox #updateRecord {
+	background: #0cf;
+}
+
+#editBox #deleteRecord {
+	background: transparent;
+	border: none;
+	color: red;
+	box-shadow: none;
+}
+#editBox #deleteRecord:active {
+	color: #900;
+	
+}
+
+#editBox .button.inFieldset {
+	width: 30%;
+	display: inline-block;
+}
+input[type='reset'].inFieldset {
+	float: right;
+}
+.ui-effects-transfer {
+	border: 2px solid #888;
+	background: rgba(225,225,225,0.1);
+	text-align: center;
+}
+
+.panel {
+	padding: 20px;
+	display: flex;
+	justify-content: space-between;
+	width: 100%;
+}
+
+.sub-panel {
+	padding: 10px;
+
+}
+
+.ui-effects-wrapper {
+   display: inline-block !important;
+}
+
+#panels .tabs{
+	display: inline-block;
+	list-style: none;
+}
+a.button-link {
+	color: inherit;
+	text-decoration: none;
+}
+a.button-link:visited {
+	color: inherit;
+	text-decoration: none;
+}
+
+#panels {
+	width: 100%;
+	background: white;
+	box-shadow: 0 0 2px rgba(0,0,0,0.7);
+	margin: 20px auto;
+}
+
+#panels ul {
+	padding: 0;
+	text-align: center;
+	width: 90%;
+	margin-bottom: 30px;
+}
+
+#panels a {
+	padding: 10px;
+	border-left: 1px solid #DDD;
+	border-right: 1px solid #DDD;
+}
+
+#panels .ui-state-active a {
+	box-shadow: inset 0 1px 3px rgba(0,0,0,0.5);
+	background-color: rgba(0,0,0,0.1);
+	border-radius: 2px;
+}
+
+.single-panel .intro {
+	
+	margin: 20px;
+	font-size: 1.5em;
+	font-weight: 700;
+	color: #777;
+}
+
+#panels form {
+	width: 50%;
+	padding: 15px;
+}
+
+#panels input[type='text'] {
+	padding: 7px;
+	border-radius: 4px;
+	width: 90%;
+	font-size: 0.8em;
+	font-weight: lighter;
+	color: #005;
+	border: 1px solid #FFF;
+	box-shadow: inset 0 0px 3px rgba(0,0,0,0.5);
+}
+
+#panels .section {
+	padding: 10px;
+	margin: 20px;
+	border: 5px solid #CCC;
+	border-radius: 10px;
+}
+
+#panels .section .header {
+	display: inline-block;
+	font-weight: bold;
+	margin: 0;
+	font-size: 1.3em;
+	background: white;
+	padding: 0 10px;
+	position: relative;
+	top: -25px;
+}
+
+.error {
+	color: #f44;
+}
+
+.admin-error {
+	text-align: left;
+	padding-left: 10px;
+}
+
+.admin-error > ul,  .admin-error > li{
+	list-style: none;
+	text-align: left !important;
+}
+
+.message {
+	text-align:left;
+}

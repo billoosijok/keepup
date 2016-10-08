@@ -1,5 +1,7 @@
 <?php
-session_start();
+if(!isset($_SESSION)) {
+	session_start();
+}
 
 if(isset($_SESSION['user_info'])) {
 		
@@ -20,6 +22,7 @@ if(isset($_SESSION['user_info'])) {
 				die("error");
 				break;
 		}
-	} else {
-		header("Location: ../index.php");
-	}
+		
+} else {
+	header("Location: ../index.php");
+}

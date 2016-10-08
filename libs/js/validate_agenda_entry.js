@@ -20,8 +20,7 @@ $(function() {
 	 	// if any of them didn't.
 		var valid = validateFields({
 						"#titleField": fieldValues.title,
-						"#dateField": fieldValues.date,
-						"#timeField": fieldValues.time
+						"#dateField": fieldValues.date
 					});
 		
 		// IF valid is true it means everything is good :D.
@@ -32,7 +31,7 @@ $(function() {
 			for(item in fieldValues) {
 				PHPvalues += item+"="+fieldValues[item]+"&";
 			}
-
+			console.log(PHPvalues);
 			upload(PHPvalues);
 		}
 
@@ -53,6 +52,7 @@ function upload(values) {
 		})
 		.done(function() {
 			$("#addAgenda").html("<p class='done'><img src='../libs/resources/done.gif?dum="+Math.random()+"'></p>");
+			setInterval(function(){location.reload()}, 1500);
 		})
 		.fail(function(msg, text, error) {
 			$("#addAgenda").text("ERROR");

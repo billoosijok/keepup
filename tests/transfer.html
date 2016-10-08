@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>transfer.html</title>
+	<link rel="stylesheet" type="text/css" href="../libs/css/jquery-ui.css">
+	<script src="../libs/js/jquery-2.2.3.min.js"></script>
+	<script src="../libs/js/jquery-ui.min.js"></script>
+	<script>
+		$(function(){
+			$("#d1").click(function() {
+				$('#d2').animate({'opacity':1}, 500);
+				$(this).effect('transfer',{to: $('#d2')}, 200);
+			});
+		});
+	</script>
+	<style type="text/css">
+		#d1 {
+			border: 1px solid #000;
+			/*height: 300px;
+			width: 300px;*/
+			/*position: static;*/
+		}
+		#d2 {
+			border: 1px solid #000;
+			height: 600px;
+			width: 600px;
+			opacity: 0;
+			position: fixed;
+			right: 0;
+			bottom: 0;
+		}
+		.ui-effects-transfer {
+		    border: 1px dotted green;
+		  }
+  
+	</style>
+</head>
+<body>
+	<main id="pagewrapper">
+		
+		<table>
+			<tr id="d1"><td>sometext here</td></tr>
+		</table>
+		<div>
+			<div id='d2'>
+				sometext n div 2
+			</div>
+		</div>
+		
+
+
+	</main>
+</body>
+</html>

@@ -1,5 +1,4 @@
 <?php 
-// session_start();
 require '../libs/inc/classes.php';
 
 require '../libs/inc/process_login.php';
@@ -9,7 +8,6 @@ require '../libs/inc/process_login.php';
 <html lang="en">
 <head>
 <?php 
-	// page::head("Login");
 	$jqueryLink = "../libs/js/jquery-2.2.3.min.js";
 	$cssLink = "../libs/css/style.css";
 	$functionsLink = "../libs/js/functions.js";
@@ -24,6 +22,7 @@ require '../libs/inc/process_login.php';
 	<script src="<?php echo $jqueryLink ?>"></script>
 	<script src="<?php echo $functionsLink ?>"></script>
 	<script src="<?php echo $transitionsLink ?>"></script>
+	<script src="../libs/js/validate_login.js"></script>
 </head>
 <body class="login-page">
 <div id="pagewrapper">

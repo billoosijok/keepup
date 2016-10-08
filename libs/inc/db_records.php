@@ -2,13 +2,18 @@
 
 class DB extends PDO {
 
+	public static $dbc;
+
 	public function __construct($DRIVER,$HOST,$USERNAME,$PASSWORD,$NAME) {
 
-       	parent::__construct("$DRIVER:host=$HOST;dbname=$NAME;charset=utf8", $USERNAME, $PASSWORD);
-       	
-       	$this->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-       	$this->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_OBJ);
-       	
+       	try {
+       		parent::__construct("$DRIVER:host=$HOST;dbname=$NAME;charset=utf8", $USERNAME, $PASSWORD);
+       		$this->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+       		$this->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_OBJ);
+       		$dbc = $this;
+       	} catch (exception $e) {
+       		die("<p style='font-size: 2.5em;'>Error Establishing Database Connection <b>:/</b> </p>");
+       	}
     }
 	
 	public function tablesNames() {
@@ -31,7 +36,7 @@ class DB extends PDO {
 		return($tables);
 	}
 
-	private function strip_str($str) {
+	public function strip_str($str) {
 		### Takes a string.
 		### Returns the same string with dashes and underscores stripped out.
 		
@@ -47,6 +52,14 @@ class DB extends PDO {
 		return $str;
 	}
 
+	function lookupRowId($table, $columnToSearchIn,$searchString) {
+		$query = $this->prepare("SELECT id FROM `table` WHERE $columnToSearchIn LIKE '%$searchString%' LIMIT 1");
+
+		$query->execute();
+
+		return $query->fetch();
+	}
+
 	function getColumnNames($TABLE_NAME) {
 		### Takes: query result like -> "SELECT * FROM table_name."
 		### Returns: - names of columns in that table in an array.
@@ -59,7 +72,6 @@ class DB extends PDO {
 			echo "{$e->getMessage()}";
 		} 
 		
-
 		$columns = [];
 
 		$row = $result->fetch(PDO::FETCH_ASSOC);
@@ -104,6 +116,46 @@ class DB extends PDO {
 		
 		# Only echoes something out when there is an error.
 		echo mysqli_error($dbc);
+	}
+
+	function echoTableOfRecords($sqlQuery, $columnsWanted,$tableIdInDOM, $tableNameInDB = "") {
+	## $ColumnsToDisplay is an array 
+	## of (column_name => column_name_in_the_DB)
+
+	$query = $this->query($sqlQuery);
+
+	$data = $query->fetchAll();
+	?>
+	<table class="records" id="<?php echo $tableIdInDOM; ?>">
+	<input type="hidden" name="table" value="<?php echo $tableNameInDB ?>">
+		<thead>
+			<tr>
+				<?php 
+				foreach ($columnsWanted as $displayCol) {
+					echo "<th>$displayCol</th>";
+				}
+				 ?>
+			</tr>
+		</thead>
+		<tbody>
+			<?php 
+			foreach ($data as $row) {
+				echo "<tr>";
+				
+				foreach ($columnsWanted as $DbCol => $displayCol) {
+					$DbCol = (is_numeric($DbCol)) ? $displayCol : $DbCol;
+					echo "<td>".$row->$DbCol."</td>";
+				}
+
+				foreach ($row as $column => $value) {
+					echo "<input type='hidden' name='$column' value='$value'>";
+				}
+				echo "</tr>\n";
+			}
+			 ?>
+		</tbody>
+	</table>
+	<?php
 	}
 }
 

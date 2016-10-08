@@ -1,5 +1,4 @@
-
-$(document).ready(function(){
+$(function() {
 
 	$('form').submit(function(evt) {
 		var statusElement = $('#status');

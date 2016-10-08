@@ -14,7 +14,8 @@ var Transition = {
 };
 
 
-function dismissPage(direction, nextPage, delay=0) {
+function dismissPage(direction, nextPage, delay) {
+		delay = delay || 0;
 		var tempObj = {}; tempObj[direction] = '-=2600';
 		tempObj['opacity'] = '0';
 		$('#pagewrapper').css('position','relative')

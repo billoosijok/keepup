@@ -1,5 +1,7 @@
 <?php
-require 'db_connect.php';	
+if(!isset($_SESSION)) { session_start(); }
+
+require_once 'db_connect.php';	
 
 	if(!isset($_POST['login_id']) AND !isset($_POST['password'])) {
 		header($_SERVER['SERVER_PROTOCOL']. " 404 Not Found", true, 403);
@@ -9,7 +11,7 @@ require 'db_connect.php';
 		$login_id = $_POST['login_id'];
 		$password = $_POST['password'];
 
-		$sql = "SELECT * FROM users WHERE login_id= :login OR email= :login OR username= :login AND password= :pass";
+		$sql = "SELECT * FROM users WHERE login_id= :login OR email= :login OR username= :login AND password= SHA2(:pass, 256)";
 		
 		try {
 			$statement = $dbc->prepare($sql);
@@ -30,7 +32,6 @@ require 'db_connect.php';
 			
 			else {header("Location: ../home");}
 			
-
 		} else {
 			if(isset($_POST['ajax'])) {
 				header('HTTP/1.1 500 Incorrect login information');
