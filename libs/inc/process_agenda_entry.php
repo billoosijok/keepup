@@ -1,4 +1,5 @@
 <?php 
+/* This script adds an agenda to the database */
 	require_once 'db_connect.php';
 	require_once 'classes.php';
 
@@ -9,11 +10,10 @@
 		$rate 	= $_POST['rate'];
 		$date 	= $_POST['date'];
 		$time 	= $_POST['time'];
-		$details 	= $_POST['details'];
 		$user_id 	= $_POST['user_id'];
 
-		$sql = "INSERT INTO `agendas` (`title`, `rate`,`category_id`,`due_date`,`due_time`,`class_id`,`user_id`,`details`) 
-			VALUES (?,?,?,?,?,?,?,?)";
+		$sql = "INSERT INTO `agendas` (`title`, `rate`,`category_id`,`due_date`,`due_time`,`class_id`,`user_id`) 
+			VALUES (?,?,?,?,?,?,?)";
 
 		try {
 			$stmt = $dbc->prepare($sql);
@@ -26,7 +26,6 @@
 			$stmt->bindParam(5, $time);
 			$stmt->bindParam(6, $class_id);
 			$stmt->bindParam(7, $user_id);
-			$stmt->bindParam(8, $details);
 
 			$stmt->execute();
 

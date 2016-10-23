@@ -1,7 +1,5 @@
 <?php
 
-namespace PrettyDateTime;
-
 class PrettyDateTime
 {
     // The constants correspond to units of time in seconds

@@ -7,8 +7,16 @@ class DB extends PDO {
 	public function __construct($DRIVER,$HOST,$USERNAME,$PASSWORD,$NAME) {
 
        	try {
+       		
        		parent::__construct("$DRIVER:host=$HOST;dbname=$NAME;charset=utf8", $USERNAME, $PASSWORD);
+       		
+       		// Setting default error mode to be exception
+       		// so it can be caught as an exception. 💀
        		$this->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+       		// Setting the fetch mode to OBJECT which will
+       		// make any fetch return row data as an object
+       		// which is greaat.
        		$this->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_OBJ);
        		$dbc = $this;
        	} catch (exception $e) {
@@ -52,7 +60,7 @@ class DB extends PDO {
 		return $str;
 	}
 
-	function lookupRowId($table, $columnToSearchIn,$searchString) {
+	function lookupRowId($table, $columnToSearchIn, $searchString) {
 		$query = $this->prepare("SELECT id FROM `table` WHERE $columnToSearchIn LIKE '%$searchString%' LIMIT 1");
 
 		$query->execute();
@@ -83,44 +91,10 @@ class DB extends PDO {
 		return $columns;
 	}
 
-	function INSERT($table, $values) {  
-		### Takes: - str: table name.
-		### 	   - str: the variables .
-
-		$placeholders = [];
-		foreach ($values as $value) {
-			array_push($placeholders, '?');
-		}
-		$placeholders = implode(',', $placeholders);
-
-		# Using arrays to append the column names and the values.
-		$cols = [];
-		$values = [];
-		
-		foreach ($formVars as $key => $value) {
-			# because you can only get the TIMESTAMP when 'date' column is not passed.
-			# so we only work on the columns that are not 'date'. 
-			if($key != 'date') {
-				$cols[sizeof($cols)] = $key;
-				$values[sizeof($values)] = "'" . $value . "'" ;
-			}
-		}
-
-		# Then the columns and values are imploded with ',' to match the sql syntax
-		$cols = implode(",",$cols);
-		$values = implode(",",$values);
-
-		# Using the created column names and values to insert data in the database. 
-		$sql = "INSERT INTO $table ($cols) VALUES ($values)";
-		mysqli_query($dbc, $sql);
-		
-		# Only echoes something out when there is an error.
-		echo mysqli_error($dbc);
-	}
 
 	function echoTableOfRecords($sqlQuery, $columnsWanted,$tableIdInDOM, $tableNameInDB = "") {
-	## $ColumnsToDisplay is an array 
-	## of (column_name => column_name_in_the_DB)
+		## $ColumnsToDisplay is an array 
+		## of (column_name => column_name_in_the_DB)
 
 	$query = $this->query($sqlQuery);
 
@@ -143,6 +117,7 @@ class DB extends PDO {
 				echo "<tr>";
 				
 				foreach ($columnsWanted as $DbCol => $displayCol) {
+					// IF display columns were not specified.
 					$DbCol = (is_numeric($DbCol)) ? $displayCol : $DbCol;
 					echo "<td>".$row->$DbCol."</td>";
 				}

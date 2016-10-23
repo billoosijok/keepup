@@ -3,10 +3,10 @@ require_once "db_connect.php";
 
 if(!isset($_SESSION)) { session_start(); }
 
-require 'PrettyDateTime.php';
+require_once 'PrettyDateTime.php';
 
 class page {
-
+	/* This class contains static vars to use across all pages! */
 	public static $USER_ID;
 	public static $USER_ROLE;
 	public static $USER_INFO;
@@ -34,9 +34,8 @@ class page {
 		
 			$jqueryLink = "../libs/js/jquery-2.2.3.min.js";
 			$cssLink = "../libs/css/style.css";
-			$functionsLink = "../libs/js/functions.js";
+			$jqueryUICssLink = "../libs/css/jquery-ui.css";
 			$transitionsLink = "../libs/js/transitions.js";
-			$userJsLink = "../libs/js/user.js";
 			$jqueryUILink = "../libs/js/jquery-ui.min.js";
 		?>
 			<meta charset="UTF-8">
@@ -44,10 +43,9 @@ class page {
 			<meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=1, user-scalable=no">
 			
 			<link rel="stylesheet" type="text/css" href="<?php echo $cssLink; ?>">
+			<link rel="stylesheet" type="text/css" href="<?php echo $jqueryUICssLink; ?>">
 			<script src="<?php echo $jqueryLink ?>"></script>
-			<script src="<?php echo $functionsLink ?>"></script>
 			<script src="<?php echo $transitionsLink ?>"></script>
-			<script src="<?php echo $userJsLink ?>"></script>
 			<script src="<?php echo $jqueryUILink ?>"></script>
 
 		<?php

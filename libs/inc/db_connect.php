@@ -1,4 +1,5 @@
 <?php 
+/* CONNECTING TO DB */
 	require_once 'db_records.php';
 
 	$DB_HOST 	 = 'localhost';
@@ -10,5 +11,4 @@
 	global $dbc;
 	$dbc = new DB($DB_DRIVER, $DB_HOST, $DB_USERNAME, $DB_PASSWORD, $DB_NAME);
 
-	
 ?>

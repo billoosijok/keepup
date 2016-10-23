@@ -1,4 +1,10 @@
 <?php 
+/* This script handles deleting requests. That is simply done by
+adding a record in the user_agenda table and giving it a status
+of 0. 
+
+In the other hand if 'undo' was clicked a different variable is 
+posted and that's when that record gets deleted. */
 require_once "db_connect.php";
 
 if(isset($_POST)) {

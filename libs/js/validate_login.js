@@ -32,4 +32,10 @@ $(function() {
 		}
 		
 	});
-});	
+});
+
+function error(msg, statusElement) {
+	statusElement.css('display', 'none');
+	statusElement.html(msg);
+	statusElement.fadeIn('fast');
+}
